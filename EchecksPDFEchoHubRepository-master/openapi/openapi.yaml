@@ -29,11 +29,13 @@ paths:
   #Authorization
   /api/Authentication/v1/Authentication:
     $ref: paths/Authentication/api@RequestAuthentication@V1.yaml
-  #eCheck
-  /api/eCheck/v1/MPXECheckPayeeContact: 
-    $ref: paths/Echecks/api@eCheck@v1@MPXECheckPayeeContact.yaml
-  /api/DirectPay/Deluxe/v1/DeluxeEcheck:
-    $ref: paths/Echecks/api@DirectPay@Deluxe@v1@DeluxeEcheck.yaml
+  #eCheckPDF 
+  /api/PDFDocs/v1/PDFDownload [For SelectPay]:
+    $ref: paths/PDFDocs/api@v1@PDFDownloadSelectPay.yaml
+  /api/PDFDocs/v1/PDFDownload [For Deluxe]:
+    $ref: paths/PDFDocs/api@v1@PDFDownloadDeluxe.yaml
+  /api/PDFDocs/v1/PDFDownload [For B2B]:
+    $ref: paths/PDFDocs/api@v1@PDFDownloadB2B.yaml
 components:
   securitySchemes:
     x-ApiKey:
@@ -57,12 +59,7 @@ tags:
   - name: Authorization 
     description: |
       This endpoint helps to generate the Authorization Token for accessing the endpoints. 
-  #eCheck
-  - name: eCheck
-    description: |
-      An eCheck, or electronic check, is a digital version of a paper check that
-      is used to make a payment online.    
-
-      With an eCheck, money is electronically withdrawn from the Payor’s
-      checking account. Money is transferred over the ACH (Automated Clearing House) network and
-      deposited into the Payee’s checking account.     
+  #eCheckPDF
+  - name:  eCheck PDF
+    description: | 
+       This endpoint allows the consumer Payee to get a PDF file of a Deluxe eCheck from the payment systems in ECHO Hub. The Payee can download the PDF file, print the eCheck and cash or deposit it just like a paper check. When the Payee logs into a payment system and makes the payment selection as eCheck, an eCheck is created and this API retrieves the PDF file. First, the data is validated in the ECHO Hub system and is then redirected to the Deluxe library in ECHO Hub. The Deluxe library will receive requests to get an eCheck PDF file from Deluxe. The PDF is retrieved, and ECHO Hub will send a success message along with the eCheck PDF file stream to the requested payment system and then the PDF file to the consumer Payee.       

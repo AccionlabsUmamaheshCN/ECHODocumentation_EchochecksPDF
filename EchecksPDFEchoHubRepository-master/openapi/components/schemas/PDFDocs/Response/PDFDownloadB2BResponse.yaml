@@ -20,7 +20,7 @@ properties:
             description: Response for Payment Response Code 001
           PaymentResponseCodeDesc:
             type: string
-            description: Direct to Debit Cancel Payment Successful
+            description: ACH Cancel Payment Successful
           TransactionId:
             type: integer
             description: Transaction Number
@@ -47,14 +47,23 @@ properties:
             description: Response for Payment Response Code 900
           PaymentResponseCodeDesc:
             type: string
-            description: Direct to Debit Cancel Payment Failed
+            description: ACH Payment Cancel Failed
           TransactionId:
             type: integer
             description: Transaction Number
           ECHOHubTransactionId:
             type: integer
-            description: ECHOHub Transaction Number       
-      TransError for JSON Validation Failed Code 1031:
+            description: ECHOHub Transaction Number
+      TransError JSON Validation Failed Code 1033:
+        type: object
+        properties:
+          ErrorCode:
+            type: integer
+            description: "1033"
+          ErrorDesc:
+            type: string
+            description: Invalid or Missing Library Method
+      TransError JSON Validation Failed Code 1031:
         type: object
         properties:
           ErrorCode:
@@ -62,8 +71,8 @@ properties:
             description: "1031"
           ErrorDesc:
             type: string
-            description: Invalid or Missing Request Value Type. Request Value Type should be either "PayorReferenceID" or "ECHOHubTransactionID"
-      TransError for JSON Validation Failed Code 1027:
+            description: Invalid or Missing Request Value Type. Request Value Type should be one of the following types "PayorReferenceID", "ECHOHubTransactionID"   
+      TransError JSON Validation Failed Code 1027:
         type: object
         properties:
           ErrorCode:
@@ -71,4 +80,4 @@ properties:
             description: "1027"
           ErrorDesc:
             type: string
-            description: Invalid or Missing Request Value                 
+            description: Invalid or Missing Request Value               
