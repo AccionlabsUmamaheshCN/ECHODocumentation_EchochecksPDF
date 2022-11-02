@@ -1,6 +1,6 @@
 required: 
   - APIFormIdentifierID 
-  - Checking Account ID  
+  - CheckingAccountID  
   - Transaction ID   
 type: object 
 properties:
